@@ -23,3 +23,27 @@ Refactor This - Cmd + Alt + Shift + T
 4. Test EmailNotifier
     Implement class from interface
     Create test file (Cmd + Shift + T)
+
+==========
+
+public class EmailNotifierTest {
+
+    private TestableSmtp mockSmtpEmailer = new TestableSmtp();
+    private EmailNotifier emailSender;
+    private CheepUserRepositoryInMemory cheepUserRepository;
+
+    @Before
+    public void setUp() throws Exception {
+        cheepUserRepository = new CheepUserRepositoryInMemory();
+        cheepUserRepository.save(TestObjectFactory.Users.Tim());
+
+        emailSender = new EmailNotifier(mockSmtpEmailer, cheepUserRepository);
+    }
+
+    @Test
+    public void sendEmailsToMentionedUsersNeedsToGetUsersEmail() {
+        emailSender.sendEmailsToMentionedUsers("@timgifford is mentioned");
+
+        mockSmtpEmailer.assertContainsRecipient("tim@leantechniques.co");
+    }
+}
