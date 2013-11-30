@@ -1,0 +1,25 @@
+Refactor This - Cmd + Alt + Shift + T
+
+1. Send Cheep saves to repository
+    Refactor out repository
+    Extract interface
+    Inject Repository from test
+    Assert against repository
+
+2. Cheep too long
+    Where to put logic?
+
+3. Send emails to mentioned users
+    Implement in unit test - refactor to class
+
+    ==========
+
+    assertThat(notifier.sendMentionedNotificationsWasCalled(), is(true));
+
+    ==========
+    Extract Interface
+    Inject to class
+
+4. Test EmailNotifier
+    Implement class from interface
+    Create test file (Cmd + Shift + T)
